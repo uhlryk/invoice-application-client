@@ -1,0 +1,173 @@
+<div class="form-group">
+  <label for="invoice_number" class="col-sm-2 control-label">Numer Faktury</label>
+  <div class="col-sm-10" ng-class="{'has-error': isSubmit && invoiceForm.invoice_number.$invalid}">
+    <input type="text" ng-model="invoice.invoice_number" name="invoice_number"  class="form-control" placeholder="np. Faktura 1/01/2015" ng-required="true"/>
+    <span ng-show="invoiceForm.invoice_number.$error.serverMessage">{{invoiceForm.invoice_number.$error.serverMessage}}</span>
+    <span ng-show="isSubmit && invoiceForm.invoice_number.$error.required">Pole jest obowiązkowe</span>
+  </div>
+</div>
+<div class="form-group">
+  <label for="customer_id" class="col-sm-2 control-label">Kontrahent</label>
+  <div class="col-sm-10" ng-class="{'has-error': isSubmit && invoiceForm.customer_id.$invalid}">
+    <select type="text" ng-model="invoice.customer_id" name="customer_id" class="form-control" ng-options="c.CustomerId as c.firmname_1 for c in customers" ng-required="true">
+      <option style="display:none" value="">Wybierz kontrahenta</option>
+    </select>
+    <span ng-show="invoiceForm.customer_id.$error.serverMessage">{{invoiceForm.customer_id.$error.serverMessage}}</span>
+    <span ng-show="isSubmit && invoiceForm.customer_id.$error.required">Pole jest obowiązkowe</span>
+  </div>
+</div>
+<div class="form-group">
+  <label for="invoice_city" class="col-sm-2 control-label">Miejsce wystawienia</label>
+  <div class="col-sm-4" ng-class="{'has-error': isSubmit && invoiceForm.invoice_city.$invalid}">
+    <input type="text" ng-model="invoice.invoice_city" name="invoice_city" class="form-control" placeholder="np. Warszawa" ng-required="true"/>
+    <span ng-show="invoiceForm.invoice_city.$error.serverMessage">{{invoiceForm.invoice_city.$error.serverMessage}}</span>
+    <span ng-show="isSubmit && invoiceForm.invoice_city.$error.required">Pole jest obowiązkowe</span>
+  </div>
+  <label for="invoice_date" class="col-sm-2 control-label">Data wystawienia</label>
+  <div class="col-sm-4" ng-class="{'has-error': isSubmit && invoiceForm.invoice_date.$invalid}">
+    <input type="date" class="form-control" name="invoice_date" ng-model="invoice.invoice_date" ng-required="true" />
+    <span ng-show="invoiceForm.invoice_date.$error.serverMessage">{{invoiceForm.invoice_date.$error.serverMessage}}</span>
+    <span ng-show="isSubmit && invoiceForm.invoice_date.$error.required">Pole jest obowiązkowe</span>
+  </div>
+</div>
+<div class="form-group">
+  <label for="sale_date" class="col-sm-2 control-label">Data sprzedaży</label>
+  <div class="col-sm-4" ng-class="{'has-error': isSubmit && invoiceForm.sale_date.$invalid}">
+    <input type="date" ng-model="invoice.sale_date" name="sale_date" class="form-control" ng-required="true"/>
+    <span ng-show="invoiceForm.sale_date.$error.serverMessage">{{invoiceForm.sale_date.$error.serverMessage}}</span>
+    <span ng-show="isSubmit && invoiceForm.sale_date.$error.required">Pole jest obowiązkowe</span>
+  </div>
+  <label for="payment_method" class="col-sm-2 control-label">Metoda płatności</label>
+  <div class="col-sm-4" ng-class="{'has-error': isSubmit && invoiceForm.payment_method.$invalid}">
+    <input type="text" ng-model="invoice.payment_method" name="payment_method" class="form-control" placeholder="np. Przelew" ng-required="true"/>
+    <span ng-show="invoiceForm.payment_method.$error.serverMessage">{{invoiceForm.payment_method.$error.serverMessage}}</span>
+    <span ng-show="isSubmit && invoiceForm.payment_method.$error.required">Pole jest obowiązkowe</span>
+  </div>
+</div>
+<div class="form-group">
+  <label for="actual_payment" class="col-sm-2 control-label">Wpłacono</label>
+  <div class="col-sm-4">
+    <input type="text" ng-model="invoice.actual_payment" class="form-control" placeholder="np. 216,14" awnum num-fract="0" num-int="6"/>
+    <span ng-show="invoiceForm.actual_payment.$error.serverMessage">{{invoiceForm.actual_payment.$error.serverMessage}}</span>
+  </div>
+  <label for="payment_due" class="col-sm-2 control-label">Termin spłaty</label>
+  <div class="col-sm-4" ng-class="{'has-error': isSubmit && invoiceForm.payment_due.$invalid}">
+    <input type="text" ng-model="invoice.payment_due" name="payment_due" class="form-control" placeholder="np. 20" ng-required="true"/>
+    <span ng-show="invoiceForm.payment_due.$error.serverMessage">{{invoiceForm.payment_due.$error.serverMessage}}</span>
+    <span ng-show="isSubmit && invoiceForm.payment_due.$error.required">Pole jest obowiązkowe</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <fieldset>
+      <legend>Dodaj elementy faktury &nbsp;<button type="button" ng-click="addInvoiceItem()" class="btn btn-primary">Dodaj</button></legend>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Lp.</th>
+            <th>Nazwa</th>
+            <th>Jednostka</th>
+            <th>Cena netto</th>
+            <th>Ilość</th>
+            <th>Stawka VAT</th>
+            <th>Wartość netto</th>
+            <th>Wartość VAT</th>
+            <th>Wartość brutto</th>
+            <th>Akcje</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(key,item) in items">
+          <td title="Lp">{{key+1}}</td>
+          <td title="Nazwa" ng-class="{'has-error': isSubmit && invoiceForm['itemname' + $index].$invalid}">
+            <input type="text" class="form-control" name="itemname{{$index}}" ng-model="item.name" placeholder="Podaj Nazwę" ng-required="true">
+          </td>
+          <td title="Jednostka" ng-class="{'has-error': isSubmit && invoiceForm['unit' + $index].$invalid}">
+            <input type="text" class="form-control" name="unit{{$index}}" ng-model="item.unit" placeholder="np szt."  ng-required="true">
+          </td>
+          <td title="Cena netto">
+            <input type="text" class="form-control" ng-model="item.price_net" placeholder="np 12,34" awnum num-sep="," >
+          </td>
+          <td title="Ilość" ng-class="{'has-error': isSubmit && invoiceForm['quantity' + $index].$invalid}">
+            <input type="text" class="form-control" name="quantity{{$index}}" ng-model="item.quantity" placeholder="Podaj Ilość" awnum num-fract="0" num-int="6" num-neg='false'>
+          </td>
+          <td title="Stawka VAT" ng-class="{'has-error': isSubmit && invoiceForm['vat_rate' + $index].$invalid}">
+            <input type="text" class="form-control" name="vat_rate{{$index}}" ng-model="item.vat_rate" placeholder="np 23" ng-required="true" awnum num-fract="0" num-int="2" num-neg='false'>
+          </td>
+          <td title="Wartość netto">
+            <div num-sep="," ng-bind="item.value_net|awnum:2:',':'round':'true'"></div>
+          </td>
+          <td title="Wartość VAT">
+            <div ng-bind="item.value_vat|awnum:2:',':'round':'true'"></div>
+          </td>
+          <td title="Wartość brutto">
+            <div ng-bind="item.value_gross|awnum:2:',':'round':'true'"></div>
+          </td>
+          <td title="Akcje">
+            <button type="button" ng-click="removeInvoiceItem(key)" class="btn btn-warning">Usuń</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </fieldset>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-offset-6 col-sm-6">
+    <fieldset>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Stawka VAT</th>
+            <th>Wartość netto</th>
+            <th>Wartość VAT</th>
+            <th>Wartość brutto</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(key,item) in vatRateItems">
+          <td title="Stawka VAT">
+            <div ng-bind="item.vat_rate|awnum:0:',':'round':'true'"></div>
+          </td>
+          <td title="Wartość netto">
+            <div ng-bind="item.value_net|awnum:2:',':'round':'true'"></div>
+          </td>
+          <td title="Wartość VAT">
+            <div ng-bind="item.value_vat|awnum:2:',':'round':'true'"></div>
+          </td>
+          <td title="Wartość brutto">
+            <div ng-bind="item.value_gross|awnum:2:',':'round':'true'"></div>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td title="Stawka VAT">
+              Razem:
+            </td>
+            <td title="Wartość netto">
+              <div ng-bind="sum.value_net|awnum:2:',':'round':'true'"></div>
+            </td>
+            <td title="Wartość VAT">
+              <div ng-bind="sum.value_vat|awnum:2:',':'round':'true'"></div>
+            </td>
+            <td title="Wartość brutto">
+              <div ng-bind="sum.value_gross|awnum:2:',':'round':'true'"></div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </fieldset>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-4 col-sm-offset-2">
+    <h2>Do zapłaty <strong ng-bind="value_balance|awnum:2:',':'round':'true'"></strong> <span ng-bind="invoice.currency"></span></h2>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <input type="submit" class="btn btn-primary" value="Zapisz"/>
+  </div>
+</div>

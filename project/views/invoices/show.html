@@ -1,0 +1,121 @@
+<div class="row">
+  <div for="invoice_number" class="col-sm-2">Numer Faktury</div>
+  <div class="col-sm-10">{{invoice.invoice_number}}</div>
+</div>
+<div class="row">
+  <div for="customer_id" class="col-sm-2">Kontrahent</div>
+  <div class="col-sm-10">
+    <div class="row">{{invoice.CustomerDetail.firmname_1}}</div>
+    <div class="row">{{invoice.CustomerDetail.address_1}}</div>
+    <div class="row">{{invoice.CustomerDetail.nip}}</div>
+  </div>
+</div>
+<div class="row">
+  <div for="invoice_city" class="col-sm-2">Miejsce wystawienia</div>
+  <div class="col-sm-4">{{invoice.invoice_city}}</div>
+  <div for="invoice_date" class="col-sm-2">Data wystawienia</div>
+  <div class="col-sm-4">{{invoice.invoice_date | amDateFormat:'DD.MM.YYYY'}}</div>
+</div>
+<div class="row">
+  <div for="sale_date" class="col-sm-2">Data sprzedaży</div>
+  <div class="col-sm-4">{{invoice.sale_date | amDateFormat:'DD.MM.YYYY'}}</div>
+  <div for="payment_method" class="col-sm-2">Metoda płatności</div>
+  <div class="col-sm-4">{{invoice.payment_method}}</div>
+</div>
+<div class="row">
+  <div for="actual_payment" class="col-sm-2">Wpłacono</div>
+  <div class="col-sm-4">{{invoice.actual_payment | awnum:2:',':'round':'true'}}</div>
+  <div for="payment_due" class="col-sm-2">Termin spłaty</div>
+  <div>{{invoice.payment_due}}</div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Lp.</th>
+            <th>Nazwa</th>
+            <th>Jednostka</th>
+            <th>Cena netto</th>
+            <th>Ilość</th>
+            <th>Stawka VAT</th>
+            <th>Wartość netto</th>
+            <th>Wartość VAT</th>
+            <th>Wartość brutto</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(key,item) in invoice.InvoiceItems">
+          <td title="Lp"><div>{{key+1}}</div></td>
+          <td title="Nazwa"><div>{{item.name}}</div></td>
+          <td title="Jednostka"><div>{{item.unit}}</div></td>
+          <td title="Cena netto"><div>{{item.price_net}}</div></td>
+          <td title="Ilość"><div>{{item.quantity}}</div></td>
+          <td title="Stawka VAT"><div>{{item.vat_rate}}</div></td>
+          <td title="Wartość netto">
+            <div num-sep="," ng-bind="item.value_net|awnum:2:',':'round':'true'"></div>
+          </td>
+          <td title="Wartość VAT">
+            <div ng-bind="item.value_vat|awnum:2:',':'round':'true'"></div>
+          </td>
+          <td title="Wartość brutto">
+            <div ng-bind="item.value_gross|awnum:2:',':'round':'true'"></div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-offset-6 col-sm-6">
+    <fieldset>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Stawka VAT</th>
+            <th>Wartość netto</th>
+            <th>Wartość VAT</th>
+            <th>Wartość brutto</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(key,item) in invoice.ValueTaxRates">
+          <td title="Stawka VAT">
+            <div ng-bind="item.vat_rate|awnum:0:',':'round':'true'"></div>
+          </td>
+          <td title="Wartość netto">
+            <div ng-bind="item.value_net|awnum:2:',':'round':'true'"></div>
+          </td>
+          <td title="Wartość VAT">
+            <div ng-bind="item.value_vat|awnum:2:',':'round':'true'"></div>
+          </td>
+          <td title="Wartość brutto">
+            <div ng-bind="item.value_gross|awnum:2:',':'round':'true'"></div>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td title="Stawka VAT">
+              Razem:
+            </td>
+            <td title="Wartość netto">
+              <div ng-bind="invoice.value_net|awnum:2:',':'round':'true'"></div>
+            </td>
+            <td title="Wartość VAT">
+              <div ng-bind="invoice.value_vat|awnum:2:',':'round':'true'"></div>
+            </td>
+            <td title="Wartość brutto">
+              <div ng-bind="invoice.value_gross|awnum:2:',':'round':'true'"></div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </fieldset>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-2">
+    <h2>Do zapłaty <strong ng-bind="invoice.value_balance|awnum:2:',':'round':'true'"></strong> <span ng-bind="invoice.currency"></span></h2>
+  </div>
+</div>

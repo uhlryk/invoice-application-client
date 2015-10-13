@@ -1,0 +1,17 @@
+@import "compass";
+@import "compass/reset";
+@import "bootstrap";
+
+body {
+  padding-top: 50px;
+  height:100%;width:100%;
+
+}
+.sidebar {
+  margin-top:50px;
+  padding-top:0px;
+  min-height:100%;
+}
+.message{
+  padding:15px;
+}

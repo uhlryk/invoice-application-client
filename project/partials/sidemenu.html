@@ -1,0 +1,7 @@
+<div ng-repeat="block in menu">
+	<hr ng-if="block.separator">
+	<p ng-if="block.title">{{block.title}}</p>
+	<ul class="nav nav-sidebar">
+		<li ng-repeat="element in block.group" ui-sref-active="active"><a ui-sref="{{element.state}}">{{element.name}} <span ng-show="element.state === menuActive" class="sr-only">(current)</span></a></li>
+	</ul>
+</div>

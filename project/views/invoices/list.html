@@ -1,0 +1,32 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Lp.</th>
+      <th>Numer Faktury</th>
+      <th>Kontrahent</th>
+      <th>Data sprzedaży</th>
+      <th>Wartość netto</th>
+      <th>Wartość VAT</th>
+      <th>Wartość brutto</th>
+      <th>Do zapłaty</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="invoice in invoices">
+    <td title="Lp">{{invoice.id}}</td>
+    <td title="Numer Faktury">{{invoice.invoice_number}}</td>
+    <td title="Kontrahent">{{invoice.CustomerDetail.firmname_1}}</td>
+    <td title="Data sprzedaży" ng-bind="invoice.sale_date | amDateFormat:'DD.MM.YYYY'"></td>
+    <td title="Wartość netto">{{invoice.value_net}}</td>
+    <td title="Wartość VAT">{{invoice.value_vat}}</td>
+    <td title="Wartość brutto">{{invoice.value_gross}}</td>
+    <td title="Do zapłaty">{{invoice.value_balance}}</td>
+    <td title="Akcje">
+      <a ui-sref="invoices/show({id:invoice.id})" class="btn btn-primary" role="button">Szczegóły</a>
+      <a ui-sref="invoices/pdf({id:invoice.id})" class="btn btn-primary" role="button">PDF</a>
+      <a ui-sref="invoices/duplicate({id:invoice.id})" class="btn btn-info" role="button">Powiel</a>
+    </td>
+  </tr>
+  </tbody>
+</table>

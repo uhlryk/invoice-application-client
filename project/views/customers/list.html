@@ -1,0 +1,36 @@
+<script type="text/ng-template" id="deleteAskModal">
+    <div class="modal-header">
+        <h3 class="modal-title">Usuwanie kontrahenta</h3>
+    </div>
+    <div class="modal-body">
+      NIP: {{nip}}
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Lp.</th>
+      <th>Nazwa Kontrahenta</th>
+      <th>NIP</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="(index,customer) in customers">
+    <td title="Lp">{{customer.id}}</td>
+    <td title="Numer Faktury">{{customer.firmname_1}}</td>
+    <td title="Data sprzedaży">{{customer.nip}}</td>
+    <td title="Akcje">
+      <a ui-sref="customers/show({id:customer.id})" class="btn btn-primary" role="button">Szczegóły</a>
+      <a ui-sref="customers/duplicate({id:customer.id})" class="btn btn-info" role="button">Powiel</a>
+      <a ui-sref="customers/update({id:customer.id})" class="btn btn-warning" role="button">Edycja</a>
+      <button type="button" class="btn btn-danger" role="button" ng-click="open(index,customer.nip)">Usunięcie</a>
+
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,54 @@
+<div class="form-group">
+  <label for="firmname_1" class="col-sm-2 control-label">Pole nazwy 1</label>
+  <div class="col-sm-10">
+    <input type="text" ng-model="customer.firmname_1" class="form-control" placeholder="Pole nazwy 1"/>
+    <span ng-show="customerForm.firmname_1.$error.serverMessage">{{customerForm.firmname_1.$error.serverMessage}}</span>
+  </div>
+</div>
+<div class="form-group">
+  <label for="firmname_2" class="col-sm-2 control-label">Pole nazwy 2</label>
+  <div class="col-sm-10">
+    <input type="text" ng-model="customer.firmname_2" class="form-control" placeholder="Pole nazwy 2"/>
+    <span ng-show="customerForm.firmname_2.$error.serverMessage">{{customerForm.firmname_2.$error.serverMessage}}</span>
+  </div>
+</div>
+<div class="form-group">
+  <label for="firmname_3" class="col-sm-2 control-label">Pole nazwy 3</label>
+  <div class="col-sm-10">
+    <input type="text" ng-model="customer.firmname_3" class="form-control" placeholder="Pole nazwy 3"/>
+    <span ng-show="customerForm.firmname_3.$error.serverMessage">{{customerForm.firmname_3.$error.serverMessage}}</span>
+  </div>
+</div>
+<div class="form-group">
+  <label for="address_1" class="col-sm-2 control-label">Pole adresu 1</label>
+  <div class="col-sm-10">
+    <input type="text" ng-model="customer.address_1" class="form-control" placeholder="Pole adresu 1"/>
+    <span ng-show="customerForm.address_1.$error.serverMessage">{{customerForm.address_1.$error.serverMessage}}</span>
+  </div>
+</div>
+<div class="form-group">
+  <label for="address_2" class="col-sm-2 control-label">Pole adresu 2</label>
+  <div class="col-sm-10">
+    <input type="text" ng-model="customer.address_2" class="form-control" placeholder="Pole adresu 2"/>
+    <span ng-show="customerForm.address_2.$error.serverMessage">{{customerForm.address_2.$error.serverMessage}}</span>
+  </div>
+</div>
+<div class="form-group">
+  <label for="address_3" class="col-sm-2 control-label">Pole adresu 3</label>
+  <div class="col-sm-10">
+    <input type="text" ng-model="customer.address_3" class="form-control" placeholder="Pole adresu 3"/>
+    <span ng-show="customerForm.address_3.$error.serverMessage">{{customerForm.address_3.$error.serverMessage}}</span>
+  </div>
+</div>
+<div class="form-group">
+  <label for="nip" class="col-sm-2 control-label">NIP</label>
+  <div class="col-sm-10">
+    <input type="text" ng-model="customer.nip" class="form-control" placeholder="Pole NIP"/>
+    <span ng-show="customerForm.nip.$error.serverMessage">{{customerForm.nip.$error.serverMessage}}</span>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <input type="submit" class="btn btn-primary" value="Zapisz"/>
+  </div>
+</div>

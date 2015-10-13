@@ -1,0 +1,10 @@
+node_modules
+.jshintrc
+project/scripts/config.js
+public
+invoice-app-client.sublime-project
+invoice-app-client.sublime-workspace
+.DS_Store
+npm-debug.log
+.sass-cache
+bower_components
