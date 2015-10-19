@@ -68,19 +68,22 @@ module.exports = angular.module('CustomerResource.Controllers', [])
   $scope.$emit("changePanelTitle","Edycja kontrahenta NIP: " + detail.nip);
   $scope.customer = detail;
   $scope.updateCustomer = function() {
-    $scope.customer.$update(function(customer) {
-      $state.go('customers/list');
-      $scope.$emit("changeSuccessMessage", "Edytowano kontrahenta");
-    }, function(response){
-      if(response && response.data && response.data.error && response.data.error.details ) {
-        var errors = response.data.error.details;
-        errors.forEach(function(val){
-          var serverMessage = $parse('customerForm.'+val.path+'.$error.serverMessage');
-          $scope.customerForm.$setValidity(val.path, false, $scope.customerForm);
-          serverMessage.assign($scope, val.message);
-        });
-      }
-    });
+    $scope.isSubmit = true;
+    if($scope.customerForm.$valid) {
+      $scope.customer.$update(function(customer) {
+        $state.go('customers/list');
+        $scope.$emit("changeSuccessMessage", "Edytowano kontrahenta");
+      }, function(response){
+        if(response && response.data && response.data.error && response.data.error.details ) {
+          var errors = response.data.error.details;
+          var message = "";
+          errors.forEach(function(val){
+            message += "<br/>"+val.message;
+          });
+          $scope.$emit("changeErrorMessage", "Wystąpił problem " + message);
+        }
+      });
+    }
   };
 }])
 .controller('DuplicateCustomerController',['$scope','$state', '$parse','detail',function($scope, $state, $parse, detail){
@@ -88,37 +91,43 @@ module.exports = angular.module('CustomerResource.Controllers', [])
   delete detail.id;
   $scope.customer = detail;
   $scope.updateCustomer = function() {
-    $scope.customer.$save(function(customer) {
-      $state.go('customers/list');
-      $scope.$emit("changeSuccessMessage", "Duplikowano kontrahenta");
-    }, function(response){
-      if(response && response.data && response.data.error && response.data.error.details ) {
-        var errors = response.data.error.details;
-        errors.forEach(function(val){
-          var serverMessage = $parse('customerForm.'+val.path+'.$error.serverMessage');
-          $scope.customerForm.$setValidity(val.path, false, $scope.customerForm);
-          serverMessage.assign($scope, val.message);
-        });
-      }
-    });
+    $scope.isSubmit = true;
+    if($scope.customerForm.$valid) {
+      $scope.customer.$save(function(customer) {
+        $state.go('customers/list');
+        $scope.$emit("changeSuccessMessage", "Duplikowano kontrahenta");
+      }, function(response){
+        if(response && response.data && response.data.error && response.data.error.details ) {
+          var errors = response.data.error.details;
+          var message = "";
+          errors.forEach(function(val){
+            message += "<br/>"+val.message;
+          });
+          $scope.$emit("changeErrorMessage", "Wystąpił problem " + message);
+        }
+      });
+    }
   };
 }])
 .controller('CreateCustomerController',['$scope','$state', '$parse','Customer',function($scope, $state, $parse, Customer){
   $scope.$emit("changePanelTitle","Nowy kontrahent");
   $scope.customer = new Customer();
   $scope.addCustomer = function() {
-    $scope.customer.$save(function(customer) {
-      $state.go('customers/list');
-      $scope.$emit("changeSuccessMessage", "Utworzono kontrahenta");
-    }, function(response){
-      if(response && response.data && response.data.error && response.data.error.details ) {
-        var errors = response.data.error.details;
-        errors.forEach(function(val){
-          var serverMessage = $parse('customerForm.'+val.path+'.$error.serverMessage');
-          $scope.customerForm.$setValidity(val.path, false, $scope.customerForm);
-          serverMessage.assign($scope, val.message);
-        });
-      }
-    });
+    $scope.isSubmit = true;
+    if($scope.customerForm.$valid) {
+      $scope.customer.$save(function(customer) {
+        $state.go('customers/list');
+        $scope.$emit("changeSuccessMessage", "Utworzono kontrahenta");
+      }, function(response){
+        if(response && response.data && response.data.error && response.data.error.details ) {
+          var errors = response.data.error.details;
+          var message = "";
+          errors.forEach(function(val){
+            message += "<br/>"+val.message;
+          });
+          $scope.$emit("changeErrorMessage", "Wystąpił problem " + message);
+        }
+      });
+    }
   };
 }]);

@@ -1,60 +1,60 @@
 <div class="form-group">
   <label for="invoice_number" class="col-sm-2 control-label">Numer Faktury</label>
   <div class="col-sm-10" ng-class="{'has-error': isSubmit && invoiceForm.invoice_number.$invalid}">
-    <input type="text" ng-model="invoice.invoice_number" name="invoice_number"  class="form-control" placeholder="np. Faktura 1/01/2015" ng-required="true"/>
-    <span ng-show="invoiceForm.invoice_number.$error.serverMessage">{{invoiceForm.invoice_number.$error.serverMessage}}</span>
+    <input type="text" ng-model="invoice.invoice_number" name="invoice_number"  class="form-control" placeholder="np. Faktura 1/01/2015" required ng-maxlength="20" ng-minlength="1"/>
     <span ng-show="isSubmit && invoiceForm.invoice_number.$error.required">Pole jest obowiązkowe</span>
+    <span ng-show="isSubmit && invoiceForm.invoice_number.$error.minlength">Pole musi mieć większą liczbę znaków</span>
+    <span ng-show="isSubmit && invoiceForm.invoice_number.$error.maxlength">Pole musi się zmieścić w 20 znakach</span>
   </div>
 </div>
 <div class="form-group">
   <label for="customer_id" class="col-sm-2 control-label">Kontrahent</label>
   <div class="col-sm-10" ng-class="{'has-error': isSubmit && invoiceForm.customer_id.$invalid}">
-    <select type="text" ng-model="invoice.customer_id" name="customer_id" class="form-control" ng-options="c.CustomerId as c.firmname_1 for c in customers" ng-required="true">
+    <select type="text" ng-model="invoice.customer_id" name="customer_id" class="form-control" ng-options="c.CustomerDetailId as c.firmname_1 for c in customers" required>
       <option style="display:none" value="">Wybierz kontrahenta</option>
     </select>
-    <span ng-show="invoiceForm.customer_id.$error.serverMessage">{{invoiceForm.customer_id.$error.serverMessage}}</span>
     <span ng-show="isSubmit && invoiceForm.customer_id.$error.required">Pole jest obowiązkowe</span>
   </div>
 </div>
 <div class="form-group">
   <label for="invoice_city" class="col-sm-2 control-label">Miejsce wystawienia</label>
   <div class="col-sm-4" ng-class="{'has-error': isSubmit && invoiceForm.invoice_city.$invalid}">
-    <input type="text" ng-model="invoice.invoice_city" name="invoice_city" class="form-control" placeholder="np. Warszawa" ng-required="true"/>
-    <span ng-show="invoiceForm.invoice_city.$error.serverMessage">{{invoiceForm.invoice_city.$error.serverMessage}}</span>
+    <input type="text" ng-model="invoice.invoice_city" name="invoice_city" class="form-control" placeholder="np. Warszawa" required  ng-maxlength="20" ng-minlength="1"/>
     <span ng-show="isSubmit && invoiceForm.invoice_city.$error.required">Pole jest obowiązkowe</span>
+    <span ng-show="isSubmit && invoiceForm.invoice_city.$error.minlength">Pole musi mieć większą liczbę znaków</span>
+    <span ng-show="isSubmit && invoiceForm.invoice_city.$error.maxlength">Pole musi się zmieścić w 20 znakach</span>
   </div>
   <label for="invoice_date" class="col-sm-2 control-label">Data wystawienia</label>
   <div class="col-sm-4" ng-class="{'has-error': isSubmit && invoiceForm.invoice_date.$invalid}">
-    <input type="date" class="form-control" name="invoice_date" ng-model="invoice.invoice_date" ng-required="true" />
-    <span ng-show="invoiceForm.invoice_date.$error.serverMessage">{{invoiceForm.invoice_date.$error.serverMessage}}</span>
+    <input type="date" class="form-control" name="invoice_date" ng-model="invoice.invoice_date" required />
     <span ng-show="isSubmit && invoiceForm.invoice_date.$error.required">Pole jest obowiązkowe</span>
   </div>
 </div>
 <div class="form-group">
   <label for="sale_date" class="col-sm-2 control-label">Data sprzedaży</label>
   <div class="col-sm-4" ng-class="{'has-error': isSubmit && invoiceForm.sale_date.$invalid}">
-    <input type="date" ng-model="invoice.sale_date" name="sale_date" class="form-control" ng-required="true"/>
-    <span ng-show="invoiceForm.sale_date.$error.serverMessage">{{invoiceForm.sale_date.$error.serverMessage}}</span>
+    <input type="date" ng-model="invoice.sale_date" name="sale_date" class="form-control" required/>
     <span ng-show="isSubmit && invoiceForm.sale_date.$error.required">Pole jest obowiązkowe</span>
   </div>
   <label for="payment_method" class="col-sm-2 control-label">Metoda płatności</label>
   <div class="col-sm-4" ng-class="{'has-error': isSubmit && invoiceForm.payment_method.$invalid}">
-    <input type="text" ng-model="invoice.payment_method" name="payment_method" class="form-control" placeholder="np. Przelew" ng-required="true"/>
-    <span ng-show="invoiceForm.payment_method.$error.serverMessage">{{invoiceForm.payment_method.$error.serverMessage}}</span>
+    <input type="text" ng-model="invoice.payment_method" name="payment_method" class="form-control" placeholder="np. Przelew" required ng-maxlength="20" ng-minlength="1"/>
     <span ng-show="isSubmit && invoiceForm.payment_method.$error.required">Pole jest obowiązkowe</span>
+    <span ng-show="isSubmit && invoiceForm.payment_method.$error.minlength">Pole musi mieć większą liczbę znaków</span>
+    <span ng-show="isSubmit && invoiceForm.payment_method.$error.maxlength">Pole musi się zmieścić w 20 znakach</span>
   </div>
 </div>
 <div class="form-group">
   <label for="actual_payment" class="col-sm-2 control-label">Wpłacono</label>
   <div class="col-sm-4">
     <input type="text" ng-model="invoice.actual_payment" class="form-control" placeholder="np. 216,14" awnum num-fract="0" num-int="6"/>
-    <span ng-show="invoiceForm.actual_payment.$error.serverMessage">{{invoiceForm.actual_payment.$error.serverMessage}}</span>
   </div>
   <label for="payment_due" class="col-sm-2 control-label">Termin spłaty</label>
   <div class="col-sm-4" ng-class="{'has-error': isSubmit && invoiceForm.payment_due.$invalid}">
-    <input type="text" ng-model="invoice.payment_due" name="payment_due" class="form-control" placeholder="np. 20" ng-required="true"/>
-    <span ng-show="invoiceForm.payment_due.$error.serverMessage">{{invoiceForm.payment_due.$error.serverMessage}}</span>
+    <input type="text" ng-model="invoice.payment_due" name="payment_due" class="form-control" placeholder="np. 20" required  required ng-maxlength="10" ng-minlength="1"/>
     <span ng-show="isSubmit && invoiceForm.payment_due.$error.required">Pole jest obowiązkowe</span>
+    <span ng-show="isSubmit && invoiceForm.payment_due.$error.minlength">Pole musi mieć większą liczbę znaków</span>
+    <span ng-show="isSubmit && invoiceForm.payment_due.$error.maxlength">Pole musi się zmieścić w 10 znakach</span>
   </div>
 </div>
 <div class="row">
@@ -80,19 +80,19 @@
         <tr ng-repeat="(key,item) in items">
           <td title="Lp">{{key+1}}</td>
           <td title="Nazwa" ng-class="{'has-error': isSubmit && invoiceForm['itemname' + $index].$invalid}">
-            <input type="text" class="form-control" name="itemname{{$index}}" ng-model="item.name" placeholder="Podaj Nazwę" ng-required="true">
+            <input type="text" class="form-control" name="itemname{{$index}}" ng-model="item.name" placeholder="Podaj Nazwę" required  ng-maxlength="20" ng-minlength="1"/>
           </td>
           <td title="Jednostka" ng-class="{'has-error': isSubmit && invoiceForm['unit' + $index].$invalid}">
-            <input type="text" class="form-control" name="unit{{$index}}" ng-model="item.unit" placeholder="np szt."  ng-required="true">
+            <input type="text" class="form-control" name="unit{{$index}}" ng-model="item.unit" placeholder="np szt."  required/>
           </td>
           <td title="Cena netto">
-            <input type="text" class="form-control" ng-model="item.price_net" placeholder="np 12,34" awnum num-sep="," >
+            <input type="text" class="form-control" ng-model="item.price_net" placeholder="np 12,34" awnum num-sep="," />
           </td>
           <td title="Ilość" ng-class="{'has-error': isSubmit && invoiceForm['quantity' + $index].$invalid}">
-            <input type="text" class="form-control" name="quantity{{$index}}" ng-model="item.quantity" placeholder="Podaj Ilość" awnum num-fract="0" num-int="6" num-neg='false'>
+            <input type="text" class="form-control" name="quantity{{$index}}" ng-model="item.quantity" placeholder="Podaj Ilość" awnum num-fract="0" num-int="6" num-neg='false'/>
           </td>
           <td title="Stawka VAT" ng-class="{'has-error': isSubmit && invoiceForm['vat_rate' + $index].$invalid}">
-            <input type="text" class="form-control" name="vat_rate{{$index}}" ng-model="item.vat_rate" placeholder="np 23" ng-required="true" awnum num-fract="0" num-int="2" num-neg='false'>
+            <input type="text" class="form-control" name="vat_rate{{$index}}" ng-model="item.vat_rate" placeholder="np 23" required awnum num-fract="0" num-int="2" num-neg='false'/>
           </td>
           <td title="Wartość netto">
             <div num-sep="," ng-bind="item.value_net|awnum:2:',':'round':'true'"></div>

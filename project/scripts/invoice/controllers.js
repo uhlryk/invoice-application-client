@@ -55,11 +55,12 @@ module.exports = angular.module('InvoiceResource.Controllers', [])
       }, function(response){
         if(response && response.data && response.data.error && response.data.error.details ) {
           var errors = response.data.error.details;
+          var message = "";
           errors.forEach(function(val){
-            var serverMessage = $parse('invoiceForm.'+val.path+'.$error.serverMessage');
-            $scope.invoiceForm.$setValidity(val.path, false, $scope.invoiceForm);
-            serverMessage.assign($scope, val.message);
+            message += "<br/>"+val.message;
           });
+          $scope.$emit("changeErrorMessage", "Wystąpił problem " + message);
+          console.log(message);
         } else if(response.status === 500){
           $scope.$emit("changeErrorMessage", "Wystąpił problem");
         }

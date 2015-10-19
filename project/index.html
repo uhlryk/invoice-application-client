@@ -16,8 +16,8 @@
       <h1 class="page-header" ng-bind="panelTitle"></h1>
       <div class="row">
         <div class="col-sm-12">
-          <p class="bg-danger text-center message" ng-show="errorMessage" ng-bind="errorMessage"></p>
-          <p class="bg-success text-center message" ng-show="successMessage" ng-bind="successMessage"></p>
+          <p class="bg-danger text-center message" ng-show="errorMessage" ng-bind-html="errorMessage"></p>
+          <p class="bg-success text-center message" ng-show="successMessage" ng-bind-html="successMessage"></p>
         </div>
       </div>
       <div class="row">

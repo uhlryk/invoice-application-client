@@ -13,7 +13,8 @@
 	require('./customer/main');
 	require('angular-animate');
 	require('angular-moment');
-	var app = angular.module('InvoiceApp', ['ngAnimate', 'ui.bootstrap', 'angularMoment', 'ui.router','dynamicNumber','ngResource', 'Config', 'InvoiceApp.Services', 'InvoiceApp.Controllers', 'InvoiceResource', 'CustomerResource']);
+	require('angular-sanitize');
+	var app = angular.module('InvoiceApp', ['ngSanitize','ngAnimate', 'ui.bootstrap', 'angularMoment', 'ui.router','dynamicNumber','ngResource', 'Config', 'InvoiceApp.Services', 'InvoiceApp.Controllers', 'InvoiceResource', 'CustomerResource']);
 	app.config(['$locationProvider', function($locationProvider){
 		$locationProvider.html5Mode(true);
 	}]);

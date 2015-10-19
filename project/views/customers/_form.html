@@ -1,50 +1,54 @@
 <div class="form-group">
   <label for="firmname_1" class="col-sm-2 control-label">Pole nazwy 1</label>
-  <div class="col-sm-10">
-    <input type="text" ng-model="customer.firmname_1" class="form-control" placeholder="Pole nazwy 1"/>
-    <span ng-show="customerForm.firmname_1.$error.serverMessage">{{customerForm.firmname_1.$error.serverMessage}}</span>
+  <div class="col-sm-10" ng-class="{'has-error': isSubmit && customerForm.firmname_1.$invalid}">
+    <input type="text" ng-model="customer.firmname_1" name="firmname_1" class="form-control" placeholder="Pole nazwy 1" required ng-maxlength="50"/>
+    <span ng-show="isSubmit && customerForm.firmname_1.$error.required">Pole nie może być puste</span>
+    <span ng-show="isSubmit && customerForm.firmname_1.$error.maxlength">Pole musi się zmieścić w 50 znakach</span>
   </div>
 </div>
 <div class="form-group">
   <label for="firmname_2" class="col-sm-2 control-label">Pole nazwy 2</label>
-  <div class="col-sm-10">
-    <input type="text" ng-model="customer.firmname_2" class="form-control" placeholder="Pole nazwy 2"/>
-    <span ng-show="customerForm.firmname_2.$error.serverMessage">{{customerForm.firmname_2.$error.serverMessage}}</span>
+  <div class="col-sm-10" ng-class="{'has-error': isSubmit && customerForm.firmname_2.$invalid}">
+    <input type="text" ng-model="customer.firmname_2" name="firmname_2" class="form-control" placeholder="Pole nazwy 2" ng-maxlength="50"/>
+    <span ng-show="isSubmit && customerForm.firmname_2.$error.maxlength">Pole musi się zmieścić w 50 znakach</span>
   </div>
 </div>
 <div class="form-group">
   <label for="firmname_3" class="col-sm-2 control-label">Pole nazwy 3</label>
-  <div class="col-sm-10">
-    <input type="text" ng-model="customer.firmname_3" class="form-control" placeholder="Pole nazwy 3"/>
-    <span ng-show="customerForm.firmname_3.$error.serverMessage">{{customerForm.firmname_3.$error.serverMessage}}</span>
+  <div class="col-sm-10" ng-class="{'has-error': isSubmit && customerForm.firmname_3.$invalid}">
+    <input type="text" ng-model="customer.firmname_3" name="firmname_3" class="form-control" placeholder="Pole nazwy 3" ng-maxlength="50"/>
+    <span ng-show="isSubmit && customerForm.firmname_3.$error.maxlength">Pole musi się zmieścić w 50 znakach</span>
   </div>
 </div>
 <div class="form-group">
   <label for="address_1" class="col-sm-2 control-label">Pole adresu 1</label>
-  <div class="col-sm-10">
-    <input type="text" ng-model="customer.address_1" class="form-control" placeholder="Pole adresu 1"/>
-    <span ng-show="customerForm.address_1.$error.serverMessage">{{customerForm.address_1.$error.serverMessage}}</span>
+  <div class="col-sm-10" ng-class="{'has-error': isSubmit && customerForm.address_1.$invalid}">
+    <input type="text" ng-model="customer.address_1" name="address_1" class="form-control" placeholder="Pole adresu 1" required ng-maxlength="50"/>
+    <span ng-show="isSubmit && customerForm.address_1.$error.required">Pole nie może być puste</span>
+    <span ng-show="isSubmit && customerForm.address_1.$error.maxlength">Pole musi się zmieścić w 50 znakach</span>
   </div>
 </div>
 <div class="form-group">
   <label for="address_2" class="col-sm-2 control-label">Pole adresu 2</label>
-  <div class="col-sm-10">
-    <input type="text" ng-model="customer.address_2" class="form-control" placeholder="Pole adresu 2"/>
-    <span ng-show="customerForm.address_2.$error.serverMessage">{{customerForm.address_2.$error.serverMessage}}</span>
+  <div class="col-sm-10" ng-class="{'has-error': isSubmit && customerForm.address_2.$invalid}">
+    <input type="text" ng-model="customer.address_2" name="address_2" class="form-control" placeholder="Pole adresu 2" ng-maxlength="50"/>
+    <span ng-show="isSubmit && customerForm.address_2.$error.maxlength">Pole musi się zmieścić w 50 znakach</span>
   </div>
 </div>
 <div class="form-group">
   <label for="address_3" class="col-sm-2 control-label">Pole adresu 3</label>
-  <div class="col-sm-10">
-    <input type="text" ng-model="customer.address_3" class="form-control" placeholder="Pole adresu 3"/>
-    <span ng-show="customerForm.address_3.$error.serverMessage">{{customerForm.address_3.$error.serverMessage}}</span>
+  <div class="col-sm-10" ng-class="{'has-error': isSubmit && customerForm.address_3.$invalid}">
+    <input type="text" ng-model="customer.address_3" name="address_3" class="form-control" placeholder="Pole adresu 3" ng-maxlength="50"/>
+    <span ng-show="isSubmit && customerForm.address_3.$error.maxlength">Pole musi się zmieścić w 50 znakach</span>
   </div>
 </div>
 <div class="form-group">
   <label for="nip" class="col-sm-2 control-label">NIP</label>
-  <div class="col-sm-10">
-    <input type="text" ng-model="customer.nip" class="form-control" placeholder="Pole NIP"/>
-    <span ng-show="customerForm.nip.$error.serverMessage">{{customerForm.nip.$error.serverMessage}}</span>
+  <div class="col-sm-10" ng-class="{'has-error': isSubmit && customerForm.nip.$invalid}">
+    <input type="text" ng-model="customer.nip" name="nip" class="form-control" placeholder="Pole NIP" required ng-minlength="1" ng-maxlength="20"/>
+    <span ng-show="isSubmit && customerForm.nip.$error.required">Pole nie może być puste</span>
+    <span ng-show="isSubmit && customerForm.nip.$error.minlength">Pole musi mieć więcej znaków</span>
+    <span ng-show="isSubmit && customerForm.nip.$error.maxlength">Pole musi się zmieścić w 20 znakach</span>
   </div>
 </div>
 <div class="form-group">
