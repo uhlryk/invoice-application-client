@@ -1,8 +1,6 @@
 /*jslint node: true */
 "use strict";
 module.exports = angular.module('InvoiceApp.Controllers',[])
-.controller("TopMenuController", ['$scope', function($scope){
-}])
 .controller("SideMenuController", ['$scope', function($scope){
 	$scope.menu =[];
 	$scope.menu.push({
