@@ -14,7 +14,7 @@
   </thead>
   <tbody>
   <tr ng-repeat="invoice in invoices">
-    <td title="Lp">{{invoice.id}}</td>
+    <td title="Lp">{{$index+1}}</td>
     <td title="Numer Faktury">{{invoice.invoice_number}}</td>
     <td title="Kontrahent">{{invoice.CustomerDetail.firmname_1}}</td>
     <td title="Data sprzedaży" ng-bind="invoice.sale_date | amDateFormat:'DD.MM.YYYY'"></td>

@@ -21,7 +21,7 @@
   </thead>
   <tbody>
   <tr ng-repeat="(index,customer) in customers">
-    <td title="Lp">{{customer.id}}</td>
+    <td title="Lp">{{$index+1}}</td>
     <td title="Numer Faktury">{{customer.firmname_1}}</td>
     <td title="Data sprzedaży">{{customer.nip}}</td>
     <td title="Akcje">
@@ -29,7 +29,6 @@
       <a ui-sref="customers/duplicate({id:customer.id})" class="btn btn-info" role="button">Powiel</a>
       <a ui-sref="customers/update({id:customer.id})" class="btn btn-warning" role="button">Edycja</a>
       <button type="button" class="btn btn-danger" role="button" ng-click="open(index,customer.nip)">Usunięcie</a>
-
     </td>
   </tr>
   </tbody>
