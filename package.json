@@ -4,7 +4,8 @@
   "description": "",
   "main": "public/index.js",
   "scripts": {
-    "start": "node ./server.js"
+    "start": "node ./server.js",
+    "protractor": "./node_modules/protractor/bin/protractor ./e2e-tests/protractor.conf.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,8 @@
     "gulp-livereload": "^3.8.1",
     "gulp-minify-css": "^1.2.1",
     "gulp-util": "^3.0.6",
+    "jasmine": "^2.3.2",
+    "protractor": "^2.5.1",
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
