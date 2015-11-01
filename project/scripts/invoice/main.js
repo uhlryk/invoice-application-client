@@ -21,7 +21,7 @@ angular.module('InvoiceResource').config(["$stateProvider", function($stateProvi
     controller : "ShowInvoiceController",
     resolve: {
       detail: ['$stateParams','Invoice', function($stateParams, Invoice){
-        return Invoice.get({ id: $stateParams.id }).$promise;
+        return Invoice.get($stateParams).$promise;
       }]
     }
   })
@@ -51,7 +51,7 @@ angular.module('InvoiceResource').config(["$stateProvider", function($stateProvi
         return Customer.query().$promise;
       }],
       detail: ['$stateParams','Invoice', function($stateParams, Invoice){
-        return Invoice.get({ id: $stateParams.id }).$promise;
+        return Invoice.get($stateParams).$promise;
       }]
     }
   })

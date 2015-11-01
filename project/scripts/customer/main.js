@@ -21,7 +21,7 @@ angular.module('CustomerResource').config(["$stateProvider", function($stateProv
     controller : "ShowCustomerController",
     resolve: {
       detail: ['$stateParams','Customer', function($stateParams, Customer){
-        return Customer.get({ id: $stateParams.id }).$promise;
+        return Customer.get($stateParams).$promise;
       }]
     }
   })
@@ -31,7 +31,7 @@ angular.module('CustomerResource').config(["$stateProvider", function($stateProv
     controller : "UpdateCustomerController",
     resolve: {
       detail: ['$stateParams','Customer', function($stateParams, Customer){
-        return Customer.get({ id: $stateParams.id }).$promise;
+        return Customer.get($stateParams).$promise;
       }]
     }
   })
@@ -41,7 +41,7 @@ angular.module('CustomerResource').config(["$stateProvider", function($stateProv
     controller : "DuplicateCustomerController",
     resolve: {
       detail: ['$stateParams','Customer', function($stateParams, Customer){
-        return Customer.get({ id: $stateParams.id }).$promise;
+        return Customer.get($stateParams).$promise;
       }]
     }
   })
